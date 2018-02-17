@@ -1,0 +1,4 @@
+---
+# defaults file for {{ role_name }}
+{% macro role_namespace(name=role_name) -%}`{% for letter in name %}{% if letter.isalpha() %}{{letter}}{% endif %}{% endfor %}_`{%- endmacro %}{{ role_namespace() }}:
+{{ role_namespace() }}:

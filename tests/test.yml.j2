@@ -1,0 +1,15 @@
+---
+- hosts: servers
+  # remote_user: root
+  pre_tasks:
+    # - name: "Ensure / Prepare"
+    #   register:
+    #   failed_when: ''
+
+  roles:
+    - role: {{ role_name }}
+
+  # tasks:
+  #   - name: "Ensure ..."
+  #     register:
+  #     failed_when: ''

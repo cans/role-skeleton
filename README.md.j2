@@ -1,0 +1,48 @@
+{{ role_name }}
+{% for letter in role_name %}={% endfor %}{% macro role_namespace(name=role_name) -%}`{% for letter in name %}{% if letter.isalpha() %}{{letter}}{% endif %}{% endfor %}_`{%- endmacro %}
+
+A brief description of the role goes here.
+
+
+Requirements
+------------
+
+This role as no requirements.
+
+
+Role Variables
+--------------
+
+All variables in this role are namespaces with the prefix {{ role_namespace() }}
+
+- {{ role_namespace() }}: (default: )
+
+
+Dependencies
+------------
+
+This role as no dependency.
+
+
+Example Playbook
+----------------
+
+Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+
+```yaml
+- hosts: servers
+  roles:
+     - role: "cans.{{role_name}}"
+```
+
+
+License
+-------
+
+GPLv2
+
+
+Author Information
+------------------
+
+Copyright © 2018{# Now way to do that in jinja without extensions ! #}, {{ author }}
