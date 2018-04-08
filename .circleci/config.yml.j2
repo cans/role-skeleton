@@ -13,16 +13,16 @@ jobs:
       - run:
           name: Create required directories
           command: |
-             mkdir -p $TEST_REPORTS_DIR/ ~/.virtualenvs ~/.ssh
-             # One needs to concateante here any files that can alter the virtualenv in a way:
-             #   - setup.py: for the endpoints installed in $VIRTUAL_ENV/bin
-             #   - requirements.txt
-             #   - dev-requirements.txt
-             # Since we do a develop install of the code itself (cf. the '-e .' in dev-requirments.txt)
-             # it does not matter.
-             cat tests/requirements.txt tests/requirements.yml > circleci-requirements.txt
-             # Note that if the workflow is split, you will need to have the file `venv/circleci-requirements.txt`
-             # passed from one build job to the other, either through caching or using workspaces.
+            mkdir -p $TEST_REPORTS_DIR/ ~/.virtualenvs ~/.ssh
+            # One needs to concateante here any files that can alter the virtualenv in a way:
+            #   - setup.py: for the endpoints installed in $VIRTUAL_ENV/bin
+            #   - requirements.txt
+            #   - dev-requirements.txt
+            # Since we do a develop install of the code itself (cf. the '-e .' in dev-requirments.txt)
+            # it does not matter.
+            cat tests/requirements.txt tests/requirements.yml > circleci-requirements.txt
+            # Note that if the workflow is split, you will need to have the file `venv/circleci-requirements.txt`
+            # passed from one build job to the other, either through caching or using workspaces.
 
       # Note: since many roles may have the exact same requirements, to make
       #       builds even cheaper and faster, here we set-up a cache that is
