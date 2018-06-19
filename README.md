@@ -1,10 +1,10 @@
 Ansible Role Skeleton
 =====================
 
-This is a revisited version of the skeleton role [shiped with
+This is a revisited version of the skeleton role [shipped with
 Ansible](https://github.com/ansible/ansible/tree/devel/lib/ansible/galaxy/data/default).
-Its purpose is to speed-up the bootstraping of a new
-role and it has the following additional features:
+Its purpose is to speed-up the bootstraping of a new role and it has the
+following additional features:
 
 - Includes ready-made CircleCI configuration template, with
   efficient caching policy (most reasonably sized role build

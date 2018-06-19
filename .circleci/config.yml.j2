@@ -7,6 +7,16 @@ jobs:
       - image: circleci/python:3.6
         environment:
           TEST_REPORTS_DIR: ~/test-reports
+
+    # If your role uses with Docker use this to run tests inside a VM instead
+    # of a container (Docker in container does not work well).
+
+    # machine:
+    #   image: "circleci/classic:latest"
+    # environment:
+    #   TEST_REPORTS_DIR: ~/test-reports
+    #   ANSIBLE_ROLE: "{{role_name}}"
+
     steps:
       - checkout
 
