@@ -42,66 +42,6 @@ your machine's configuration while testing this role. You'll just mess
 the docker container instance.
 
 
-A note on Debian systems
-------------------------
-
-Installing docker from the distribution packages does not always work (they
-are often outdated). You may need to remove those packages (``docker.io``,
-``docker-runc``, ``docker-containerd``, ...) and install the one provided by
-docker: ``docker-ce`` [#docker]_.
-
-
-Ansible, Docker & virtualenv
-----------------------------
-
-A second issue comes with using *local commands* involving Docker with
-Ansible within virtualenvs. The symptom of the issue is Ansible reporting
-that It cannot find the ``docker`` Python module despite it being
-properly installed in the virtualenv. The important part is *local
-commands*: that is using ``connection: local`` in a play or
-Ansible's ``--connection=local`` command line option. If you do that,
-Ansible will run commands on your local machine. Typically, the tests
-here enclosed, create a docker container on your local machine, before
-running the tests inside the newly created container. But by default the
-path to the the python interpreter Ansible uses is *hard coded* as
-``/usr/bin/python``. That means Ansible will *evade* the virtualenv.
-Hence it is "normal" that it does not find the packages you installed in
-it.
-
-Clean solution
-""""""""""""""
-
-At the top of your inventory file add this line:
-
-.. code-block:: ini
-
-    localhost ansible_python_interpreter="/usr/bin/env python"
-
-That way ``/usr/bin/env`` *sees* the ``PATH`` overrides of your
-virtualenv and Ansible will use the python interpreter in it,
-not the system global one.
-
-
-Dirty solutions
-"""""""""""""""
-
-In that case you will need to install it, either globally::
-
-    # apt-get install python-docker
-
-Or on your personnal account if the later is not an option::
-
-    $ pip install --user docker>=2.4.0,<3.0
-
-.. warning::
-
-   Those dirty solutions work, but if you come to need different
-   versions of the ``docker`` Python module, you'll be stuck.
-
-
-.. [#venv] If you use Python 2.7, first make sure you have the virtualenv package installed.
-.. [#docker] See https://docs.docker.com/install/linux/docker-ce/debian/#install-docker-ce-1
-
 {# vim: et:sw=4:syntax=rst:ts=4:
  Leave the end tag on a separate line to not confuse vim.
  #}

@@ -1,11 +1,17 @@
 ---
 - name: Bring up docker containers
   hosts: localhost
+  connection: local
   gather_facts: false
   vars:
+    ansible_python_interpreter: "/usr/bin/env python"
     inventory:
       - name: {{ role_name | replace('-', '_') }}_host_1
         image: "python:3.6-stretch"
+        groups:
+          - servers
+      - name: {{ role_name | replace('-', '_') }}_host_1
+        image: "python:3.7-stretch"
         groups:
           - servers
 
